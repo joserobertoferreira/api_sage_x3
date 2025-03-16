@@ -1,0 +1,18 @@
+[tool.taskipy.tasks]
+run = "python manage.py runserver"
+migrate_auth = "python manage.py migrate --database=auth_db"
+migrate_sage = "python manage.py migrate --database=sage"
+make = "python manage.py makemigrations"
+app = "python manage.py startapp"
+
+[tool.ruff]
+line-length = 90
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
