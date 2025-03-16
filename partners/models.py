@@ -468,7 +468,7 @@ class Supplier(models.Model):
     zeditor_0 = models.SmallIntegerField(db_column='ZEDITOR_0')
     default_invoicing_module = models.SmallIntegerField(db_column='INVORIMOD_0')
     zarrlqd_0 = models.DateTimeField(db_column='ZARRLQD_0')
-    id = models.AutoField(db_column='ROWID', primary_key=True)
+    id = models.BigAutoField(db_column='ROWID', primary_key=True)
 
     class Meta:
         managed = False
@@ -776,22 +776,7 @@ class Customer(models.Model):
     contact = models.CharField(db_column='CNTEFAT_0', max_length=15)
     start_date = models.DateTimeField(db_column='STRDATEFAT_0')
     is_electronic_invoice = models.SmallIntegerField(db_column='AEIFLG_0')
-    zestab_0 = models.CharField(db_column='ZESTAB_0', max_length=35)
-    zwinflg_0 = models.SmallIntegerField(db_column='ZWINFLG_0')
-    ziec_0 = models.CharField(db_column='ZIEC_0', max_length=20)
-    zposto_0 = models.CharField(db_column='ZPOSTO_0', max_length=20)
-    zpertrf_0 = models.DecimalField(
-        db_column='ZPERTRF_0', max_digits=10, decimal_places=3
-    )
-    zdestcert_0 = models.CharField(
-        db_column='ZDESTCERT_0',
-        max_length=20,
-    )
-    yflgpro_0 = models.SmallIntegerField(db_column='YFLGPRO_0')
-    ydatpro_0 = models.DateTimeField(db_column='YDATPRO_0')
-    yvaldat_0 = models.DateTimeField(db_column='YVALDAT_0')
-    yvaldays_0 = models.SmallIntegerField(db_column='YVALDAYS_0')
-    rowid = models.DecimalField(db_column='ROWID', max_digits=38, decimal_places=0)
+    id = models.BigAutoField(db_column='ROWID', primary_key=True)
 
     class Meta:
         managed = False

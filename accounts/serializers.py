@@ -1,6 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenBlacklistSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -52,3 +53,11 @@ class UpdatePasswordSerializer(serializers.ModelSerializer):
         del validated_data['password_confirmation']
         validated_data['password'] = make_password(validated_data['password'])
         return super().update(instance, validated_data)
+
+
+class CustomTokenBlacklistSerializer(TokenBlacklistSerializer):
+    access = None
+
+    def validate(self, attrs):
+        attrs['access'] = self.access
+        return super().validate(attrs)

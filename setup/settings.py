@@ -35,9 +35,11 @@ THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
+    'drf_spectacular',
 ]
 
 LOCAL_APPS = [
+    'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'partners.apps.PartnersConfig',
 ]
@@ -152,7 +154,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.APIPagination',
+    'PAGE_SIZE': config('PAGE_SIZE', default=250, cast=int),
+    'TOKEN_BLACKLIST_SERIALIZER': 'accounts.serializers.CustomTokenBlacklistSerializer',
 }
+
+PAGE_SIZE_QUERY_PARAM = 'page_size'
+MAX_PAGE_SIZE = 1000
 
 # Simple JWT settings
 SIMPLE_JWT = {
@@ -164,4 +175,12 @@ SIMPLE_JWT = {
     ),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
+}
+
+# Spectacular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Sage X3 API',
+    'DESCRIPTION': 'API for Sage X3',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }

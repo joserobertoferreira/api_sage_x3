@@ -1,15 +1,12 @@
-# from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from partners.filters import PartnerFilter
 from partners.models import Address, Partner
-from partners.serializers import PartnerSerializer
+from partners.serializers.partner import PartnerSerializer
 
 
 class PartnerListView(APIView):
-    # permission_classes = [IsAuthenticated]
-
     @staticmethod
     def get(request):
         queryset = Partner.objects.filter()
